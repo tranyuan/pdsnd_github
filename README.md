@@ -47,3 +47,4 @@ Also asking display the head of the Data
 ### Credits
 
 Data provided by Motivate
+Udacity do some data wrangling
