@@ -20,11 +20,10 @@ def get_filters():
     while True:
         city = input("Please enther the city (chicago, new york city, washington):\n")
         city = city.lower()
-        if city not in ('chicago', 'new_york_city', 'washington'):
+        if city not in ('chicago', 'new york city', 'washington'):
             print("Not a valid city.")
         else:
             break
-    
 
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
@@ -34,7 +33,7 @@ def get_filters():
             print("Not a valid month.")
         else:
             break
-    
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         day = input("Please enther the day of week (all, monday, tuesday, ... sunday):\n")
@@ -46,7 +45,6 @@ def get_filters():
 
     print('-'*40)
     return city, month, day
-
 
 def load_data(city, month, day):
     """
@@ -93,24 +91,18 @@ def time_stats(df):
 
     # TO DO: display the most common month
     common_month = df['month'].mode()[0]
-    
     print('Most Common Month: \n', common_month)
     # TO DO: display the most common day of week
-    
     common_day = df['day'].mode()[0]
-    
     print('Most Common Day: \n', common_day)
-
 
     # TO DO: display the most common start hour
 
     # extract hour from the Start Time column to create an hour column
     df['hour'] = df['Start Time'].dt.hour
-    
     common_hour = df['hour'].mode()[0]
 
     print('Most Common Hour: \n', common_hour)
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -122,21 +114,17 @@ def station_stats(df):
     start_time = time.time()
 
     # TO DO: display most commonly used start station
-    common_start = df['Start Station'].mode()[0] 
-
+    common_start = df['Start Station'].mode()[0]
     print('Most Common Start Station: \n', common_start)
     # TO DO: display most commonly used end station
-    common_end = df['End Station'].mode()[0] 
-    
+    common_end = df['End Station'].mode()[0]
     print('Most Common End Station: \n', common_end)
     # TO DO: display most frequent combination of start station and end station trip
 
     df['S_E_Sation'] = df['Start Station'] + ' to ' + df['End Station']
     common_s_e = df['S_E_Sation'].mode()[0]
-    
-    print('Most Frequent Combination of Start Station and End Station trip: \n', common_s_e)
-    
 
+    print('Most Frequent Combination of Start Station and End Station trip: \n', common_s_e)
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -149,13 +137,12 @@ def trip_duration_stats(df):
 
     # TO DO: display total travel time
     t_travel_time = df['Trip Duration'].sum()
-
     print("Total Travel Time: \n", t_travel_time)
+
     # TO DO: display mean travel time
     m_travel_time = df['Trip Duration'].mean()
 
     print("Average Travel Time: \n", m_travel_time)
-    
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -172,7 +159,7 @@ def user_stats(df):
     print("Count of user types: \n", user_types)
 
     # TO DO: Display counts of gender
-    
+
     while True:
         try:
             gender_types = df['Gender'].value_counts()
@@ -188,26 +175,22 @@ def user_stats(df):
         try:
             earliest_birth = df['Birth Year'].min()
             recent_birth = df['Birth Year'].max()
-            common_birth = df['Birth Year'].mode()[0] 
-        
+            common_birth = df['Birth Year'].mode()[0]
+
             print("Earliest Birth: \n", earliest_birth)
             print("Recent Birth: \n", recent_birth)
             print("Common Birth: \n", common_birth)
             break
         except:
             print ("Not Avalible for Display earliest, most recent, and most common year of birth.")
-            break    
-    
-    
-    
-        
-        
+            break
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 def display_raw(df):
     '''Ask the User whether they want to see the raw data'''
-    while True: 
+    while True:
         try:
             Answer = input("Do you want to see the raw data? (yes, no):\n")
             Answer = Answer.lower()
@@ -221,12 +204,11 @@ def display_raw(df):
         else:
             print("Can't Understand.")
 
-
 def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         display_raw(df)
         time_stats(df)
         station_stats(df)
@@ -236,7 +218,6 @@ def main():
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-
 
 if __name__ == "__main__":
 	main()
